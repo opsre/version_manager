@@ -1,0 +1,16 @@
+2025-05-14 17:26:43 | INFO | Request: GET http://192.168.0.100:5000/
+2025-05-14 17:26:43 | INFO | Response: 404 NOT FOUND
+2025-05-14 17:26:44 | INFO | Request: GET http://192.168.0.100:5000/favicon.ico
+2025-05-14 17:26:44 | INFO | Response: 404 NOT FOUND
+2025-05-14 17:27:15 | INFO | Request: GET http://192.168.0.100:5000/versions/R0001
+2025-05-14 17:27:15 | INFO | Response: 404 NOT FOUND
+2025-05-14 17:28:09 | INFO | Request: GET http://192.168.0.100:5000/versions
+2025-05-14 17:28:09 | INFO | Response: 404 NOT FOUND
+2025-05-14 17:28:35 | INFO | Request: GET http://127.0.0.1:5000/versions
+2025-05-14 17:28:35 | INFO | Response: 404 NOT FOUND
+2025-05-14 17:28:36 | INFO | Request: GET http://127.0.0.1:5000/favicon.ico
+2025-05-14 17:28:36 | INFO | Response: 404 NOT FOUND
+2025-05-15 17:01:24 | INFO | Request: GET http://192.168.0.101:5000/
+2025-05-15 17:01:24 | INFO | Response: 404 NOT FOUND
+2025-05-15 17:01:24 | INFO | Request: GET http://192.168.0.101:5000/favicon.ico
+2025-05-15 17:01:24 | INFO | Response: 404 NOT FOUND
