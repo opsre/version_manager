@@ -23,6 +23,13 @@ class Config:
     LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO')  # 日志级别
     LOG_PATH = os.getenv('LOG_PATH', 'logs')  # 日志存储路径
 
+    # FTP配置
+    FTP_HOST = os.environ.get('FTP_HOST')
+    FTP_PORT = int(os.environ.get('FTP_PORT', 21))
+    FTP_USERNAME = os.environ.get('FTP_USERNAME')
+    FTP_PASSWORD = os.environ.get('FTP_PASSWORD')
+    FTP_DIRECTORY = os.environ.get('FTP_DIRECTORY')
+
     # 文件上传配置
     UPLOAD_FOLDER = os.getenv('UPLOAD_FOLDER', 'uploads')  # 文件上传目录
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB 上传文件大小限制
