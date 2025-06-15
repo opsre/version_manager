@@ -1,0 +1,10 @@
+Flask==2.3.3
+Flask-SQLAlchemy==3.1.1
+Flask-Migrate==4.0.5
+Flask-RESTful==0.3.10
+PyMySQL==1.1.0
+python-dotenv==1.0.0
+pytest==7.4.0
+Werkzeug==2.3.7
+Flask-CORS==4.0.0
+PyJWT==2.8.0
