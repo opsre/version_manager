@@ -21,6 +21,16 @@
   - `email` (string, 必填)
   - `password` (string, 必填)
   - `is_admin` (bool, 选填)
+```json
+{
+    "username": "test",
+    "email": "test0607@qq.com",
+    "password": "123456",
+    "is_admin": true,
+    "role_id": "1",
+    "department": "运维部"
+}
+```
 - **返回**: 新建用户对象（JSON）
 
 ### 获取用户信息

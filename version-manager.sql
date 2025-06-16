@@ -118,3 +118,13 @@ CREATE TABLE `alembic_version` (
   `version_num` varchar(32) NOT NULL,
   PRIMARY KEY (`version_num`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO version_test.roles (name,description,status,created_at,updated_at) VALUES
+	 ('管理员','系统管理员，拥有所有权限',1,'2025-06-08 13:59:09','2025-06-08 13:59:09'),
+	 ('开发者','开发人员，负责代码开发和版本管理',1,'2025-06-08 14:04:35','2025-06-08 14:04:35'),
+	 ('产品经理','产品人员，负责产品功能设计',1,'2025-06-08 14:06:41','2025-06-08 14:06:41'),
+	 ('测试人员','测试人员，负责产品功能测试',1,'2025-06-08 14:07:07','2025-06-08 14:07:07'),
+	 ('只读用户','其它部门临时使用',1,'2025-06-08 14:07:52','2025-06-08 14:07:52');
+
+INSERT INTO version_test.users (username,name,email,password_hash,is_admin,created_at,updated_at,status,role_id,department,last_login_at) VALUES
+	 ('test',NULL,'test0607@qq.com','pbkdf2:sha256:600000$eydqw75JnHVaSfYt$be3e096d06c98ed549cda9d5137dfcddfe02fbd23f7f315ed26e2e83b6371a96',1,'2025-06-16 12:34:20','2025-06-16 12:34:20',1,1,'运维部',NULL);
