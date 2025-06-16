@@ -1,60 +1,3 @@
-CREATE TABLE `alembic_version` (
-  `version_num` varchar(32) NOT NULL,
-  PRIMARY KEY (`version_num`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-CREATE TABLE `files` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `filename` varchar(255) DEFAULT NULL,
-  `original_filename` varchar(255) DEFAULT NULL,
-  `file_path` varchar(500) DEFAULT NULL,
-  `file_size` int(11) DEFAULT NULL,
-  `file_type` varchar(50) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `version_id` int(11) DEFAULT NULL,
-  `uploader_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `uploader_id` (`uploader_id`),
-  KEY `version_id` (`version_id`),
-  CONSTRAINT `files_ibfk_1` FOREIGN KEY (`uploader_id`) REFERENCES `users` (`id`),
-  CONSTRAINT `files_ibfk_2` FOREIGN KEY (`version_id`) REFERENCES `versions` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
-
-
-CREATE TABLE `operation_logs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `operation_time` datetime DEFAULT NULL,
-  `operation_type` varchar(50) NOT NULL,
-  `object_type` varchar(50) NOT NULL,
-  `object_name` varchar(100) DEFAULT NULL,
-  `object_id` varchar(50) DEFAULT NULL,
-  `operator_id` int(11) DEFAULT NULL,
-  `details` text,
-  PRIMARY KEY (`id`),
-  KEY `ix_operation_logs_object_id` (`object_id`),
-  KEY `ix_operation_logs_object_type` (`object_type`),
-  KEY `ix_operation_logs_operation_time` (`operation_time`),
-  KEY `ix_operation_logs_operation_type` (`operation_type`),
-  KEY `ix_operation_logs_operator_id` (`operator_id`),
-  CONSTRAINT `operation_logs_ibfk_1` FOREIGN KEY (`operator_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE `products` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  `description` text,
-  `code` varchar(50) DEFAULT NULL,
-  `status` varchar(20) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `owner_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ix_products_code` (`code`),
-  KEY `owner_id` (`owner_id`),
-  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -89,7 +32,38 @@ CREATE TABLE `users` (
   CONSTRAINT `fk_users_role_id` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE `operation_logs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `operation_time` datetime DEFAULT NULL,
+  `operation_type` varchar(50) NOT NULL,
+  `object_type` varchar(50) NOT NULL,
+  `object_name` varchar(100) DEFAULT NULL,
+  `object_id` varchar(50) DEFAULT NULL,
+  `operator_id` int(11) DEFAULT NULL,
+  `details` text,
+  PRIMARY KEY (`id`),
+  KEY `ix_operation_logs_object_id` (`object_id`),
+  KEY `ix_operation_logs_object_type` (`object_type`),
+  KEY `ix_operation_logs_operation_time` (`operation_time`),
+  KEY `ix_operation_logs_operation_type` (`operation_type`),
+  KEY `ix_operation_logs_operator_id` (`operator_id`),
+  CONSTRAINT `operation_logs_ibfk_1` FOREIGN KEY (`operator_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `description` text,
+  `code` varchar(50) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `owner_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ix_products_code` (`code`),
+  KEY `owner_id` (`owner_id`),
+  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `user_product_permissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -121,3 +95,26 @@ CREATE TABLE `versions` (
   CONSTRAINT `versions_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`),
   CONSTRAINT `versions_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `files` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `filename` varchar(255) DEFAULT NULL,
+  `original_filename` varchar(255) DEFAULT NULL,
+  `file_path` varchar(500) DEFAULT NULL,
+  `file_size` int(11) DEFAULT NULL,
+  `file_type` varchar(50) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `version_id` int(11) DEFAULT NULL,
+  `uploader_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `uploader_id` (`uploader_id`),
+  KEY `version_id` (`version_id`),
+  CONSTRAINT `files_ibfk_1` FOREIGN KEY (`uploader_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `files_ibfk_2` FOREIGN KEY (`version_id`) REFERENCES `versions` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `alembic_version` (
+  `version_num` varchar(32) NOT NULL,
+  PRIMARY KEY (`version_num`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
