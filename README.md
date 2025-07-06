@@ -145,13 +145,8 @@ MIT License
 ---
 
 如需定制开发或企业支持，请联系 874878956@qq.com
+
 **打赏**
 | 二维码 |
 | :-------------: |
 | <img src="https://pic.zzppjj.top/LightPicture/2023/02/cebf13bbcea9264d.jpg" alt="Pay" width="200"> |
----
-
-你可以根据实际情况补充“联系方式”、“演示地址”等内容。  
-如需更详细的 API 文档、部署说明等，可拆分到 `api.md`、`docs/` 等子文件夹。
-
-如果需要我直接帮你生成并替换 README.md 文件内容，请告知！
