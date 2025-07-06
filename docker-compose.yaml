@@ -2,16 +2,18 @@ version: '3.9'
 
 services:
   backend:
-    image: version:v1
-    container_name: backend
+    image: docker.cnb.cool/zzppjj/docker-images/version_manager:v1
+    container_name: version_manager_backend
+    volumes:
+      - ./.env:/app/.env
     ports:
       - "5000:5000"
     networks:
       - app-network
 
   frontend:
-    image: version_manager_ui:v1
-    container_name: frontend
+    image: docker.cnb.cool/zzppjj/docker-images/version_manager_ui:v1
+    container_name: version_manager_frontend
     ports:
       - "8080:80"
     depends_on:
