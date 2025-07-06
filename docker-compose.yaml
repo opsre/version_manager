@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  backend:
+    image: version:v1
+    container_name: backend
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+
+  frontend:
+    image: version_manager_ui:v1
+    container_name: frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
