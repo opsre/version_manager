@@ -1,70 +1,157 @@
-# Flask 版本管理产品开发指南
-您好！我将帮助您开发一个基于 Flask 的版本管理产品，按照企业级目录结构，并引导您完成包括 MySQL 数据库操作和 FTP 文件存储的完整开发流程。
+# Version Manager —— 企业级 Flask 版本管理平台
 
-## 1. 项目结构设计
-首先，让我们设计一个企业级的目录结构：
-flask-test/
-```bash
-├── app/                    # 应用主目录
-│   ├── __init__.py         # 应用初始化
-│   ├── api/                # API 模块
-│   │   ├── __init__.py
-│   │   ├── routes.py       # API 路由
-│   │   └── resources/      # API 资源
-│   │       ├── __init__.py
-│   │       ├── user.py     # 用户资源
-│   │       ├── version.py  # 版本资源
-│   │       └── file.py     # 文件资源
-│   ├── models/             # 数据模型
-│   │   ├── __init__.py
-│   │   ├── user.py         # 用户模型
-│   │   ├── version.py      # 版本模型
-│   │   └── file.py         # 文件模型
-│   ├── services/           # 业务逻辑
-│   │   ├── __init__.py
-│   │   ├── user_service.py
-│   │   ├── version_service.py
-│   │   └── file_service.py
-│   ├── utils/              # 工具函数
-│   │   ├── __init__.py
-│   │   ├── ftp_client.py   # FTP 客户端
-│   │   └── validators.py   # 数据验证
-│   ├── config.py           # 配置文件
-│   └── extensions.py       # 扩展模块初始化
-├── migrations/             # 数据库迁移文件
-├── tests/                  # 测试目录
-│   ├── __init__.py
-│   ├── test_user.py
-│   ├── test_version.py
-│   └── test_file.py
-├── .env                    # 环境变量
-├── .gitignore              # Git 忽略文件
-├── requirements.txt        # 依赖包
-└── run.py                  # 应用入口
+> 🚀 一站式版本管理、文件存储与权限控制解决方案
+
+---
+
+## 项目简介
+
+**Version Manager** 是一款基于 Flask 框架开发的企业级版本管理平台，集成了 MySQL 数据库操作、FTP 文件存储、细粒度权限控制与操作日志，助力企业高效、安全地管理产品版本与文件。  
+本项目采用模块化、可扩展的架构设计，适合中大型团队协作与二次开发。
+
+---
+
+## 核心特性
+
+- **企业级架构**：清晰分层，易于维护与扩展
+- **多用户与权限管理**：支持角色分配、产品权限、操作日志审计
+- **版本与文件管理**：高效追踪产品版本，支持大文件上传与存储
+- **FTP 集成**：安全、稳定的文件存储方案
+- **RESTful API**：前后端分离，易于对接各类前端/第三方系统
+- **易于部署**：支持 Docker 一键部署，环境配置灵活
+
+---
+
+## 技术架构
+
+```mermaid
+graph TD
+  A[用户/前端] -->|RESTful API| B[Flask 应用]
+  B --> C[SQLAlchemy<br/>MySQL]
+  B --> D[FTP 文件存储]
+  B --> E[权限与日志模块]
 ```
-## 2. 开发环境准备
-首先，让我们创建虚拟环境并安装必要的依赖：
-python -m venv venv
-venv\Scripts\activate
-pip install flask flask-sqlalchemy flask-migrate flask-restful pymysql python-dotenv ftplib
-启动
-venv/Scripts/python.exe run.py
-## 3. 创建项目基础结构
-让我们开始创建项目的基础结构：
-### 3.1 创建主要目录
-mkdir -p app/api/resources app/models app/services app/utils tests
-### 3.2 创建配置文件
-touch app/config.py app/extensions.py app/__init__.py tests/__init__.py
-### 3.3 创建环境变量文件
-touch .env
-### 3.4 创建 Git 忽略文件
-touch .gitignore
-### 3.5 创建依赖包文件
-touch requirements.txt
-### 3.6 创建全局配置文件
-touch config.py
-### 3.7 创建应用入口文件
-touch run.py
-## 4. 配置数据库
-我们将使用 Flask-SQLAlchemy 来操作 MySQL 数据库。
 
+- **后端**：Flask + Flask-RESTful + SQLAlchemy + Alembic
+- **数据库**：MySQL
+- **文件存储**：FTP
+- **环境管理**：python-dotenv
+- **部署**：Docker / Docker Compose
+
+---
+
+## 目录结构
+
+```bash
+version_manager/
+├── app/
+│   ├── api/           # API 路由与资源
+│   ├── models/        # 数据模型
+│   ├── services/      # 业务逻辑
+│   ├── utils/         # 工具函数
+│   ├── config.py      # 配置
+│   └── extensions.py  # 扩展初始化
+├── migrations/        # 数据库迁移
+├── tests/             # 单元测试
+├── requirements.txt   # 依赖
+├── run.py             # 启动入口
+└── ...
+```
+
+---
+
+## 快速开始
+
+1. **克隆项目**
+   ```bash
+   - 后端
+   git clone https://github.com/your-org/version_manager.git
+   cd version_manager
+   - 前端
+   git clone https://github.com/zpj874878956/version_manager_ui.git
+   cd version_manager_ui
+   ```
+
+2. **环境准备**
+   ```bash
+   python -m venv venv
+   venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
+
+3. **配置数据库与环境变量**
+   - 编辑 `.env` 文件，配置数据库、FTP 等信息
+
+4. **初始化数据库**
+   ```bash
+   执行version-manager.sql
+   ```
+
+5. **启动服务**
+   ```bash
+   python run.py
+   ```
+
+6. **Docker 一键部署**
+   ```bash
+   docker-compose up -d
+   ```
+7. **演示地址**
+   ```bash
+   https://version.zzppjj.top
+   账号：test
+   密码：123456
+   ```
+---
+
+## 常见问题（FAQ）
+
+1. **如何备份与恢复数据？**  
+   只需备份数据库和 FTP 存储目录，恢复时还原即可。
+
+2. **如何扩展业务逻辑？**  
+   新增业务只需在 `services/`、`models/`、`api/resources/` 目录下添加对应模块。
+
+3. **如何对接前端？**  
+   所有功能均通过 RESTful API 提供，详见 `api.md` 文档。
+
+4. **权限系统如何运作？**  
+   支持角色、产品、用户多维度权限分配，详见 `app/models/role.py`。
+
+---
+
+## 未来规划
+
+- 支持版本数据分析
+- 优化界面UI
+
+
+---
+
+## 致谢
+
+- 感谢 Flask、SQLAlchemy等开源项目
+
+---
+
+## License
+
+MIT License
+
+---
+
+> 🌟 如果你觉得本项目有帮助，欢迎 Star、Fork、提 Issue 或 PR！
+
+---
+
+如需定制开发或企业支持，请联系 874878956@qq.com
+**打赏**
+| 二维码 |
+| :-------------: |
+| <img src="https://pic.zzppjj.top/LightPicture/2023/02/cebf13bbcea9264d.jpg" alt="Pay" width="200"> |
+---
+
+你可以根据实际情况补充“联系方式”、“演示地址”等内容。  
+如需更详细的 API 文档、部署说明等，可拆分到 `api.md`、`docs/` 等子文件夹。
+
+如果需要我直接帮你生成并替换 README.md 文件内容，请告知！
