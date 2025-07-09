@@ -65,7 +65,7 @@ version_manager/
 1. **克隆项目**
    ```bash
    - 后端
-   git clone https://github.com/your-org/version_manager.git
+   git clone https://github.com/opsre/version_manager.git
    cd version_manager
    - 前端
    git clone https://github.com/zpj874878956/version_manager_ui.git
