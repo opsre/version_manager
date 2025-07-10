@@ -21,6 +21,28 @@
 - **易于部署**：支持 Docker 一键部署，环境配置灵活
 
 ---
+## 功能预览
+
+<table align="center" width="100%">
+  <tr>
+    <td align="center" width="50%">
+      <img src="image/product_list.png" alt="产品列表" width="90%"/>
+    </td>
+    <td align="center" width="50%">
+      <img src="image/product_detail.png" alt="产品详情" width="90%"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="image/version_detail.png" alt="版本详情" width="90%"/>
+    </td>
+    <td align="center">
+      <img src="image/role_manager.png" alt="权限管理" width="90%"/>
+    </td>
+  </tr>
+</table>
+
+---
 
 ## 技术架构
 
