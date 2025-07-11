@@ -124,6 +124,8 @@ version_manager/
    账号：test
    密码：123456
    ```
+8. **根据产品code和版本号获取版本是否锁定的方式**
+参考脚本version_lock.sh
 ---
 
 ## 常见问题（FAQ）
