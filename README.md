@@ -120,12 +120,16 @@ version_manager/
    ```
 7. **演示地址**
    ```bash
-   https://version.zzppjj.top
+   http://121.37.210.217:8080/
    账号：test
    密码：123456
    ```
 8. **根据产品code和版本号获取版本是否锁定的方式**
 参考脚本version_lock.sh
+
+9. **最佳使用方式案例**
+在jenkins流水线中使用shell脚本version_lock.sh调用该接口，实现版本的锁定与解锁。
+
 ---
 
 ## 常见问题（FAQ）
