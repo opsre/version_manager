@@ -106,7 +106,7 @@ version_manager/
 
 4. **初始化数据库**
    ```bash
-   执行version-manager.sql
+   执行version_test.sql
    ```
 
 5. **启动服务**

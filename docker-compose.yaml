@@ -4,10 +4,23 @@ services:
   backend:
     image: docker.cnb.cool/zzppjj/docker-images/version_manager:v1
     container_name: version_manager_backend
-    volumes:
-      - ./.env:/app/.env
+    environment:
+      - DB_USERNAME=root
+      - DB_PASSWORD=mysql_password
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_NAME=version_test
+      - FTP_HOST=ftp
+      - FTP_PORT=21
+      - FTP_USERNAME=team01
+      - FTP_PASSWORD=ftp_password
+      - FTP_DIRECTORY=file
+      - CORS_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
     ports:
       - "5000:5000"
+    depends_on:
+      - db
+      - ftp
     networks:
       - app-network
 
@@ -21,7 +34,35 @@ services:
     networks:
       - app-network
 
+  db:
+    image: docker.cnb.cool/zzppjj/docker-images/mysql:5.7
+    container_name: version_manager_db
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysql_password
+      - MYSQL_DATABASE=version_test
+    volumes:
+      - ./db_data:/var/lib/mysql
+      - ./version_test.sql:/docker-entrypoint-initdb.d/version_test.sql
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+
+  ftp:
+    image: docker.cnb.cool/zzppjj/docker-images/vsftpd:latest
+    container_name: version_manager_ftp
+    environment:
+      - FTP_USER=team01
+      - FTP_PASS=ftp_password
+    volumes:
+      - ./ftp_data:/home/vsftpd
+    ports:
+      - "21:21"
+      - "20:20"
+      - "21100-21110:21100-21110"
+    networks:
+      - app-network
+
 networks:
   app-network:
     driver: bridge
-
